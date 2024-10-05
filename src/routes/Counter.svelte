@@ -1,6 +1,7 @@
 <script lang="ts">
 import { spring } from "svelte/motion";
 
+// biome-ignore lint/style/useConst: This is a counter, it's supposed to change
 let count = 0;
 
 const displayed_count = spring();
