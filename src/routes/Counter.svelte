@@ -1,21 +1,39 @@
 <script lang="ts">
 import { spring } from "svelte/motion";
+import type { Writable } from "svelte/store";
 
-// biome-ignore lint/style/useConst: This is a counter, it's supposed to change
-let count = 0;
+export let count: Writable<number>;
 
 const displayed_count = spring();
-$: displayed_count.set(count);
+
+$: displayed_count.set($count);
+
 $: offset = modulo($displayed_count, 1);
 
+$: squared = $count * $count;
+$: cubed = squared * $count;
+
+$: {
+	console.log("count changes to :", $count);
+	console.log("squared value :", squared);
+	console.log("cubed value :", cubed);
+}
+
 function modulo(n: number, m: number) {
-	// handle negative numbers
 	return ((n % m) + m) % m;
 }
+
+const handleCountUp = () => {
+	count.set($count + 1);
+};
+
+const handleCountDown = () => {
+	count.set($count - 1);
+};
 </script>
 
 <div class="counter">
-	<button on:click={() => (count -= 1)} aria-label="Decrease the counter by one">
+	<button on:click={handleCountDown} aria-label="Decrease the counter by one">
 		<svg aria-hidden="true" viewBox="0 0 1 1">
 			<path d="M0,0.5 L1,0.5" />
 		</svg>
@@ -28,7 +46,7 @@ function modulo(n: number, m: number) {
 		</div>
 	</div>
 
-	<button on:click={() => (count += 1)} aria-label="Increase the counter by one">
+	<button on:click={handleCountUp} aria-label="Increase the counter by one">
 		<svg aria-hidden="true" viewBox="0 0 1 1">
 			<path d="M0,0.5 L1,0.5 M0.5,0 L0.5,1" />
 		</svg>

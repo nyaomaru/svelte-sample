@@ -1,12 +1,15 @@
 <script>
-import Counter from "./Counter.svelte";
-import welcome from "$lib/images/svelte-welcome.webp";
 import welcome_fallback from "$lib/images/svelte-welcome.png";
+import welcome from "$lib/images/svelte-welcome.webp";
+import { writable } from "svelte/store";
+import Counter from "./Counter.svelte";
+
+const count = writable(0);
 </script>
 
 <svelte:head>
 	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Nyaomaru svelte sample" />
 </svelte:head>
 
 <section>
@@ -25,7 +28,10 @@ import welcome_fallback from "$lib/images/svelte-welcome.png";
 		try editing <strong>src/routes/+page.svelte</strong>
 	</h2>
 
-	<Counter />
+	<Counter count={count} />
+
+	<p>global count value</p>
+	<p>{$count}</p>
 </section>
 
 <style>
