@@ -11,3 +11,9 @@ pnpm install
 
 node --run dev
 ```
+
+## Caution
+
+Almost of all lInt & formatter are used Biome.
+But, Biome is not completely adopted to svelte.
+So, I use prettier with html formatting.
