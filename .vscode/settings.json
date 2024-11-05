@@ -1,5 +1,4 @@
 {
-	"makefile.configureOnOpen": false,
 	"editor.defaultFormatter": "biomejs.biome",
 	"editor.formatOnPaste": true,
 	"editor.formatOnSave": true,
@@ -26,5 +25,7 @@
 	"[svelte]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode",
 		"editor.formatOnSave": true
-	}
+	},
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"svelte.language-server.runtime": "pnpm"
 }
